@@ -1,64 +1,77 @@
 #include <iostream>
- #include <string>
- #include <iomanip>  
- using namespace std;
- 
- class Student {
- private:
-     string rollNumber;
-     string name;
-     int marks[3];
-     double average;
- 
- public:
-     Student(string roll = "Unknown", string n = "Default Name", int m1 = 0, int m2 = 0, int m3 = 0) 
-         : rollNumber(roll), name(n) {
-         marks[0] = m1;
-         marks[1] = m2;
-         marks[2] = m3;
-         calculateAverage();  
- 
-     void calculateAverage() {
-         double sum = 0;
-         for (int i = 0; i < 3; ++i) {
-             sum += marks[i];
-         }
-         average = sum / 3.0; 
-     }
-     void displayStudentInfo() {
-         cout << "Roll Number: " << rollNumber << endl;
-         cout << "Name: " << name << endl;
-         cout << "Marks: ";
-         for (int i = 0; i < 3; ++i) {
-             cout << marks[i] << " ";
-         }
-         cout << endl;
-         cout << "Average: " << fixed << setprecision(2) << average << endl;
-     }
-     string toString() {
-         stringstream ss;
-         ss << rollNumber << " | " << name << " | Marks: ";
-         for (int i = 0; i < 3; ++i) {
-             ss << marks[i] << " ";
-         }
-         ss << "| Average: " << fixed << setprecision(2) << average;
-         return ss.str();
-     }
- };
- void testSystem() {
-     Student students[4];
-     students[0] = Student();
-     students[1] = Student("S001", "John Doe", 78, 82, 91);
-     students[2] = Student("S002", "Jane Smith", 85, 76, 88);
-     students[3] = Student("S003", "Mark Lee", 91, 94, 88);
-     for (int i = 0; i < 4; ++i) {
-         students[i].displayStudentInfo();
-         cout << "students detalis are :" << endl;
-     }
- }
- 
- int main() {
-     // Run the test system
-     testSystem();
-     return 0;
- }
+using namespace std;
+
+class Student {
+private:
+    int roll, marks[3];
+    string name;
+    float avg;
+
+public:
+    // Default constructor
+    Student() {
+        roll = 0;
+        name = "N/A";
+        marks[0] = marks[1] = marks[2] = 0;
+        avg = 0.0;
+    }
+
+    // Parameterized constructor
+    Student(int rno, string nam, int mar1, int mar2, int mar3) {
+        roll = rno;
+        name = nam;
+        marks[0] = mar1;
+        marks[1] = mar2;
+        marks[2] = mar3;
+    }
+
+    // Function to display student details
+    void display() {
+        cout << "Roll No: " << roll << endl;
+        cout << "Name   : " << name << endl;
+        cout << "Marks of CCP               : " << marks[0] << endl;
+        cout << "Marks of Maths             : " << marks[1] << endl;
+        cout << "Marks of Digital Electronics: " << marks[2] << endl;
+    }
+
+    // Function to calculate and display average marks
+    void avgg() {
+        avg = (marks[0] + marks[1] + marks[2]) / 3.0;
+        cout << "Average of marks is: " << avg << endl;
+    }
+};
+
+int main() {
+    int n;
+    cout << "Enter the number of students: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        int roll, mark1, mark2, mark3;
+        string name;
+
+        cout << "\nEnter Roll No: ";
+        cin >> roll;
+
+        cout << "Enter Name: ";
+        cin >> name;
+
+        cout << "Enter Marks of CCP: ";
+        cin >> mark1;
+
+        cout << "Enter Marks of Maths: ";
+        cin >> mark2;
+
+        cout << "Enter Marks of Digital Electronics: ";
+        cin >> mark3;
+
+        Student obj(roll, name, mark1, mark2, mark3);
+
+        cout << "\nTHE DATA OF STUDENT " << i + 1 << ":\n";
+        obj.display();
+        obj.avgg();
+    }
+
+
+    return 0;
+}
