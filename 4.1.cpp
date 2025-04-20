@@ -2,7 +2,6 @@
 #include <cmath>
 using namespace std;
 
-// Base class for shapes
 class Shape {
 protected:
     double radius;
@@ -19,10 +18,10 @@ public:
         return radius;
     }
 
-    virtual double area() const = 0;  // Pure virtual function
+    virtual double area() const = 0;
 };
 
-// Derived class for Circle
+
 class Circle : public Shape {
 public:
     Circle(double r = 0.0) : Shape(r) {}
