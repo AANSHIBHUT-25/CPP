@@ -18,7 +18,7 @@ public:
 
     void Deposit(float diff) {
         PrevBal = Balance;
-        Balance+=diff;
+        //Balance+=diff;
 
         HistoryFile.open(FileName, ios::app);
         HistoryFile.seekp(SEEK_END);
